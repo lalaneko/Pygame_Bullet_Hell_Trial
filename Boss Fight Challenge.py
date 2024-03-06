@@ -8,20 +8,20 @@ from Danmaku import *
 from Bullet_Collection import *
 from Sprites import *
 from config import *
-
-# 游戏窗口尺寸
-screen_width = 600
-screen_height = 800
-
-# 定义颜色
-BLACK = (0, 0, 0)
-WHITE = (255, 255, 255)
-RED = (255, 0, 0)
-GREEN = (0, 255, 0)
-BLUE = (0, 0, 255)
-ENEMY_COLOR = (128, 64, 200)
-BOSS_COLOR = (176, 120, 50)
-
+# 
+# # 游戏窗口尺寸
+# screen_width = 600
+# screen_height = 800
+#
+# # 定义颜色
+# BLACK = (0, 0, 0)
+# WHITE = (255, 255, 255)
+# RED = (255, 0, 0)
+# GREEN = (0, 255, 0)
+# BLUE = (0, 0, 255)
+# ENEMY_COLOR = (128, 64, 200)
+# BOSS_COLOR = (176, 120, 50)
+#
 
 # 初始化Pygame
 pygame.init()

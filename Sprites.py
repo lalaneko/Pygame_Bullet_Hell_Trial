@@ -97,7 +97,7 @@ class Boss:
         self.chance = 1
         self.HEALTH = health
         self.S_bullet_angle = 0
-        self.attack = 0
+        self.attack = 2
         # For S_spray
         self.S_temp = 0
         self.S_temp_count = 0
@@ -128,7 +128,8 @@ class Boss:
             S_spray_2(self)
         elif self.attack == 2:
             S_split(self)
-
+            # S_spray(self)
+            # S_spray_2(self)
 
 
     def draw(self, screen):
@@ -145,4 +146,3 @@ class Boss:
         boss_bullet = Boss_Bullet(self.x + self.width / 2, self.y + self.height / 2, speed, color, size, angle)
         boss_bullets.append(boss_bullet)
         # boss_8_split_bullets.append(Boss_8_Split_Bullet(self.x + self.width / 2, self.y + self.height / 2, speed, color, size, angle))  # 整活用
-
