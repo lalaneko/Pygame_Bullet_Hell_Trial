@@ -75,7 +75,7 @@ while not game_over:
 
             # 检查子弹是否击中Boss
             if bullet.check_collision(boss):
-                boss.health -= 10
+                boss.health -= 5
                 if boss.health <= 0:
                     print('Won')
                     game_over = True

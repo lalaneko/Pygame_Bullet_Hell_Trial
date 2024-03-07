@@ -87,7 +87,7 @@ def S_slow_down_shotgun(self, freq, density, size, speed):
     # print(Player_x, Player_width)
     angle = atan(((config.Player_x + config.Player_width / 2) - (self.x + self.width / 2)) / (
                 (config.Player_y + config.Player_height / 2) - (self.y + self.width / 2)))
-    if (config.Player_y + config.Player_height) - (self.y + self.width) < 0:
+    if (config.Player_y + config.Player_height / 2) - (self.y + self.width / 2) <= 0:
         angle += pi
     if self.S_temp_count_frequency_modifier_slow_down % freq == 0:
         print(angle)

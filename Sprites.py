@@ -22,7 +22,7 @@ class Player:
         self.height = 10
         self.shooting = False
         self.last_shot = pygame.time.get_ticks()
-        self.shoot_delay = 100
+        self.shoot_delay = 50
         config.Player_width = self.width
         config.Player_height = self.height
 
@@ -80,7 +80,7 @@ class Player:
     def shoot(self):
         current_time = pygame.time.get_ticks()
         if current_time - self.last_shot > self.shoot_delay:
-            bullet = Bullet(self.x + self.width // 2, self.y - 10, -5, RED, 5, 0)
+            bullet = Bullet(self.x + self.width // 2, self.y - 10, -10, RED, 5, 0)
             bullets.append(bullet)
             self.last_shot = current_time
 
