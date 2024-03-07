@@ -46,3 +46,16 @@ class Boss_8_Split_Bullet(Bullet):
     def split(self):
         for i in range(1,11):
             boss_bullets.append(Boss_Bullet(self.x * 0.99, self.y * 0.99, 4, WHITE, 5, self.angle + pi/5 * i))
+
+class Boss_Slow_Down_Bullet(Bullet):
+    def __init__(self, x, y, speed, color, radius, angle, acc):
+        super().__init__(x, y, speed, color, radius, angle)
+        self.acceleration = acc
+
+
+    def update(self):
+        self.y += self.speed * cos(self.angle)
+        self.x += self.speed * sin(self.angle)
+        self.speed += self.acceleration
+        if self.speed <= 0:
+            boss_slow_down_bullets.remove(self)

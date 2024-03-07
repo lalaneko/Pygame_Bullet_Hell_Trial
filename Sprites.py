@@ -4,7 +4,7 @@ from pygame.locals import *
 from math import *
 import time
 import random
-from config import *
+import config
 from Bullet_Collection import *
 from Danmaku import *
 
@@ -23,6 +23,8 @@ class Player:
         self.shooting = False
         self.last_shot = pygame.time.get_ticks()
         self.shoot_delay = 100
+        config.Player_width = self.width
+        config.Player_height = self.height
 
 
     def move(self, keys):
@@ -67,6 +69,10 @@ class Player:
         if self.y > screen_height - self.height:
             self.y = screen_height - self.height
 
+        config.Player_x = self.x
+        config.Player_y = self.y
+        print(Player_x, Player_y)
+
     def draw(self, screen):
         pygame.draw.rect(screen, BOSS_COLOR, (self.x, self.y, self.width, self.height))
         pygame.draw.rect(screen, GREEN, (self.x, self.y - 10, (self.width / self.HEALTH) * self.health, 5))
@@ -97,7 +103,7 @@ class Boss:
         self.chance = 1
         self.HEALTH = health
         self.S_bullet_angle = 0
-        self.attack = 2
+        self.attack = 3
         # For S_spray
         self.S_temp = 0
         self.S_temp_count = 0
@@ -109,6 +115,8 @@ class Boss:
         self.S_flag_2 = 1
         # For S_split
         self.S_temp_count_frequency_modifier_split = 0
+        # For S_slow_down_shot
+        self.S_temp_count_frequency_modifier_slow_down = 0
 
 
     def update(self):
@@ -130,6 +138,8 @@ class Boss:
             S_split(self)
             # S_spray(self)
             # S_spray_2(self)
+        elif self.attack == 3:
+            S_slow_down_shotgun(self, 50, 5, 5, 6)
 
 
     def draw(self, screen):
@@ -146,3 +156,4 @@ class Boss:
         boss_bullet = Boss_Bullet(self.x + self.width / 2, self.y + self.height / 2, speed, color, size, angle)
         boss_bullets.append(boss_bullet)
         # boss_8_split_bullets.append(Boss_8_Split_Bullet(self.x + self.width / 2, self.y + self.height / 2, speed, color, size, angle))  # 整活用
+

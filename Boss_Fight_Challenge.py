@@ -117,6 +117,17 @@ while not game_over:
                 boss_8_split_bullet.split()
                 boss_8_split_bullets.remove(boss_8_split_bullet)
 
+        for boss_slow_down_bullet in boss_slow_down_bullets:
+            boss_slow_down_bullet.update()
+            boss_slow_down_bullet.draw(screen)
+
+            if boss_slow_down_bullet.check_collision(player):
+                player.health -= 10
+                boss_slow_down_bullets.remove(boss_slow_down_bullet)
+            # 检查Boss子弹是否超出屏幕
+            if boss_slow_down_bullet.y < 0 or boss_slow_down_bullet.y > screen_height:
+                boss_slow_down_bullets.remove(boss_slow_down_bullet)
+
         boss.update()
         boss.draw(screen)
 

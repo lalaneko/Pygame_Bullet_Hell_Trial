@@ -4,8 +4,9 @@ from pygame.locals import *
 from math import *
 import time
 import random
-from config import *
+import config
 from Bullet_Collection import *
+# import Boss_Fight_Challenge
 
 
 def S_spray(self):
@@ -28,6 +29,7 @@ def S_spray(self):
         self.shoot(angle=(self.S_bullet_angle + 4 * pi / 3))
     elif self.S_temp_count_frequency_modifier % 6 == 5:
         self.shoot(angle=(self.S_bullet_angle + 5 * pi / 3))
+
 
 def S_spray_2(self):
     if self.S_temp_count_frequency_modifier_2 > 2200:
@@ -78,3 +80,16 @@ def S_split(self):
     self.S_temp_count_frequency_modifier_split += 1
     if self.S_temp_count_frequency_modifier_split % 15 == 0:
         boss_8_split_bullets.append(Boss_8_Split_Bullet(self.x + self.width / 2, self.y + self.height / 2, 5, WHITE, 7, random.uniform(0, 2*pi)))
+
+
+def S_slow_down_shotgun(self, freq, density, size, speed):
+    self.S_temp_count_frequency_modifier_slow_down += 1
+    # print(Player_x, Player_width)
+    angle = atan(((config.Player_x + config.Player_width) - (self.x + self.width)) / (
+                (config.Player_y + config.Player_height) - (self.y + self.width)))
+    if (config.Player_y + config.Player_height) - (self.y + self.width) < 0:
+        angle += pi
+    if self.S_temp_count_frequency_modifier_slow_down % freq == 0:
+        print(angle)
+        for i in range(density):
+            boss_slow_down_bullets.append(Boss_Slow_Down_Bullet(self.x + self.width / 2, self.y + self.height / 2, speed * random.uniform(0.8, 1.2), WHITE, size * random.uniform(0.8,1.2), angle + random.uniform(-0.2,0.2), -0.02))
