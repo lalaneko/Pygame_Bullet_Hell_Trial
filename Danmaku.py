@@ -85,11 +85,11 @@ def S_split(self):
 def S_slow_down_shotgun(self, freq, density, size, speed):
     self.S_temp_count_frequency_modifier_slow_down += 1
     # print(Player_x, Player_width)
-    angle = atan(((config.Player_x + config.Player_width) - (self.x + self.width)) / (
-                (config.Player_y + config.Player_height) - (self.y + self.width)))
+    angle = atan(((config.Player_x + config.Player_width / 2) - (self.x + self.width / 2)) / (
+                (config.Player_y + config.Player_height / 2) - (self.y + self.width / 2)))
     if (config.Player_y + config.Player_height) - (self.y + self.width) < 0:
         angle += pi
     if self.S_temp_count_frequency_modifier_slow_down % freq == 0:
         print(angle)
         for i in range(density):
-            boss_slow_down_bullets.append(Boss_Slow_Down_Bullet(self.x + self.width / 2, self.y + self.height / 2, speed * random.uniform(0.8, 1.2), WHITE, size * random.uniform(0.8,1.2), angle + random.uniform(-0.2,0.2), -0.02))
+            boss_slow_down_bullets.append(Boss_Slow_Down_Bullet(self.x + self.width / 2, self.y + self.height / 2, speed * random.uniform(0.8, 1.2), WHITE, size * random.uniform(0.8,1.2), angle + random.uniform(-0.1,0.1), -0.033))

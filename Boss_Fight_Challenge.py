@@ -35,6 +35,7 @@ player = Player(screen_width // 2 - 10, screen_height - 40, 5, 100)  # TODO
 
 # 创建Boss对象
 boss = Boss(screen_width // 2 - 20, screen_height // 2 - 270, 2, 1000)
+boss_marker = Boss_Marker(boss)
 
 # 游戏主循环
 clock = pygame.time.Clock()
@@ -68,6 +69,7 @@ while not game_over:
         player.draw(screen)
 
         for bullet in bullets:
+            boss.health -= 0.01
             bullet.update()
             bullet.draw(screen)
 
@@ -130,6 +132,9 @@ while not game_over:
 
         boss.update()
         boss.draw(screen)
+
+        boss_marker.update()
+        boss_marker.draw(screen)
 
         # 检查Boss是否与玩家碰撞
         if player.x < boss.x + boss.width and player.x + player.width > boss.x and player.y < boss.y + boss.height and player.y + player.height > boss.y:

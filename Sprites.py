@@ -103,7 +103,7 @@ class Boss:
         self.chance = 1
         self.HEALTH = health
         self.S_bullet_angle = 0
-        self.attack = 3
+        self.attack = 1
         # For S_spray
         self.S_temp = 0
         self.S_temp_count = 0
@@ -132,14 +132,16 @@ class Boss:
                 self.health += self.HEALTH - self.health
         if self.attack == 0:
             S_spray(self)
+            S_slow_down_shotgun(self, 150, 10, 5.5, 8)
         elif self.attack == 1:
             S_spray_2(self)
+            S_slow_down_shotgun(self, 150, 10, 5.5, 8)
         elif self.attack == 2:
             S_split(self)
             # S_spray(self)
             # S_spray_2(self)
         elif self.attack == 3:
-            S_slow_down_shotgun(self, 50, 5, 5, 6)
+            S_slow_down_shotgun(self, 50, 10, 5.5, 8)
 
 
     def draw(self, screen):
@@ -156,4 +158,25 @@ class Boss:
         boss_bullet = Boss_Bullet(self.x + self.width / 2, self.y + self.height / 2, speed, color, size, angle)
         boss_bullets.append(boss_bullet)
         # boss_8_split_bullets.append(Boss_8_Split_Bullet(self.x + self.width / 2, self.y + self.height / 2, speed, color, size, angle))  # 整活用
+
+class Boss_Marker:
+    def __init__(self, boss):
+        self.boss = boss
+        self.size = 20
+        self.color = BLUE
+
+    def update(self):
+        # Update the position of the marker based on the boss's position
+        self.x = self.boss.x + self.boss.width / 2 - self.size / 2
+        self.y = screen_height - self.size
+
+    def draw(self, screen):
+        # Draw the diamond marker on the screen
+        pygame.draw.polygon(screen, self.color, [
+            (self.x + self.size // 2, self.y),  # Top point
+            (self.x, self.y + self.size // 2),  # Left point
+            (self.x + self.size // 2, self.y + self.size),  # Bottom point
+            (self.x + self.size, self.y + self.size // 2)  # Right point
+        ])
+
 

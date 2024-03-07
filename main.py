@@ -2,6 +2,7 @@ import pygame
 import sys
 from pygame.locals import *
 from math import *
+from Sprites import Boss_Marker
 
 def spring01():
     # 初始化Pygame
@@ -501,6 +502,7 @@ def game():
 
     # 创建Boss对象
     boss = Boss(screen_width // 2 - 30, 50, 2, 400)
+    boss_marker = Boss_Marker(boss)
 
     # 存储子弹的列 表
     bullets = []
@@ -600,6 +602,9 @@ def game():
             boss.update()
             boss.health += 0.05
             boss.draw()
+
+            boss_marker.update()
+            boss_marker.draw(screen)
 
             # 检查Boss是否与玩家碰撞
             if player.x < boss.x + boss.width and player.x + player.width > boss.x and player.y < boss.y + boss.height and player.y + player.height > boss.y:
