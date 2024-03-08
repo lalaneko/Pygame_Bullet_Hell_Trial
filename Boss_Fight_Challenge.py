@@ -1,5 +1,5 @@
 import pygame
-import sys
+import sys, os
 from pygame.locals import *
 from math import *
 import time
@@ -21,8 +21,10 @@ from config import *
 # BLUE = (0, 0, 255)
 # ENEMY_COLOR = (128, 64, 200)
 # BOSS_COLOR = (176, 120, 50)
-#
 
+
+screen_position = (screen_width - 100, screen_height // 2 - 380)
+os.environ['SDL_VIDEO_WINDOW_POS'] = "{},{}".format(screen_position[0], screen_position[1])
 # 初始化Pygame
 pygame.init()
 

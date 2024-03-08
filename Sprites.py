@@ -162,7 +162,7 @@ class Boss:
 class Boss_Marker:
     def __init__(self, boss):
         self.boss = boss
-        self.size = 20
+        self.size = 25
         self.color = BLUE
 
     def update(self):
@@ -173,10 +173,10 @@ class Boss_Marker:
     def draw(self, screen):
         # Draw the diamond marker on the screen
         pygame.draw.polygon(screen, self.color, [
-            (self.x + self.size // 2, self.y),  # Top point
-            (self.x, self.y + self.size // 2),  # Left point
-            (self.x + self.size // 2, self.y + self.size),  # Bottom point
-            (self.x + self.size, self.y + self.size // 2)  # Right point
+            (self.x + self.size / 2, self.y + self.size / 2),  # Top point
+            (self.x - self.size / 2, self.y + self.size),  # Left point
+            (self.x + self.size / 2, self.y + self.size * 1.5),  # Bottom point
+            (self.x + self.size * 1.5, self.y + self.size)  # Right point
         ])
 
 
