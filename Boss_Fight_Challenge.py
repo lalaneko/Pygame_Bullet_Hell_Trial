@@ -104,8 +104,9 @@ while not game_over:
                 boss_bullets.remove(boss_bullet)
 
             # 检查Boss子弹是否超出屏幕
-            if boss_bullet.y < 0 or boss_bullet.y > screen_height:
-                boss_bullets.remove(boss_bullet)
+            if boss_bullet.y < 0 or boss_bullet.y > screen_height or boss_bullet.x < 0 or boss_bullet.x > screen_width:
+                if boss_bullet in boss_bullets:
+                    boss_bullets.remove(boss_bullet)
 
         for boss_8_split_bullet in boss_8_split_bullets:
             boss_8_split_bullet.update()
@@ -129,8 +130,25 @@ while not game_over:
                 player.health -= 10
                 boss_slow_down_bullets.remove(boss_slow_down_bullet)
             # 检查Boss子弹是否超出屏幕
-            if boss_slow_down_bullet.y < 0 or boss_slow_down_bullet.y > screen_height:
+            if boss_slow_down_bullet.y < 0 or boss_slow_down_bullet.y > screen_height or boss_slow_down_bullet.x < 0 or boss_slow_down_bullet.x > screen_width:
                 boss_slow_down_bullets.remove(boss_slow_down_bullet)
+
+        for boss_shatter_explosion_bullet in boss_shatter_explosion_bullets:
+            boss_shatter_explosion_bullet.update()
+            boss_shatter_explosion_bullet.draw(screen)
+
+            # 检查Boss子弹是否击中玩家
+            if boss_shatter_explosion_bullet.check_collision(player):
+                player.health -= 20
+                if boss_shatter_explosion_bullet in boss_shatter_explosion_bullets:
+                    boss_shatter_explosion_bullets.remove(boss_shatter_explosion_bullet)
+
+            # 检查Far Collision
+            if boss_shatter_explosion_bullet.check_far_collision(player) or (boss_shatter_explosion_bullet.y < 0 or boss_shatter_explosion_bullet.y > screen_height or boss_shatter_explosion_bullet.x < 0 or boss_shatter_explosion_bullet.x > screen_width):
+                boss_shatter_explosion_bullet.minor_split()
+                if boss_shatter_explosion_bullet in boss_shatter_explosion_bullets:
+                    boss_shatter_explosion_bullets.remove(boss_shatter_explosion_bullet)
+
 
         boss.update()
         boss.draw(screen)

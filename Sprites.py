@@ -71,7 +71,7 @@ class Player:
 
         config.Player_x = self.x
         config.Player_y = self.y
-        print(Player_x, Player_y)
+        # print(Player_x, Player_y)
 
     def draw(self, screen):
         pygame.draw.rect(screen, BOSS_COLOR, (self.x, self.y, self.width, self.height))
@@ -103,7 +103,7 @@ class Boss:
         self.chance = 1
         self.HEALTH = health
         self.S_bullet_angle = 0
-        self.attack = 1
+        self.attack = 4
         # For S_spray
         self.S_temp = 0
         self.S_temp_count = 0
@@ -121,7 +121,7 @@ class Boss:
 
     def update(self):
         current_time = pygame.time.get_ticks()
-        print(current_time)
+        # print(current_time)
         # self.x += self.speed
         # if self.x < 0 or self.x > screen_width - self.width:
         #     self.speed *= -1
@@ -142,6 +142,8 @@ class Boss:
             # S_spray_2(self)
         elif self.attack == 3:
             S_slow_down_shotgun(self, 50, 10, 5.5, 8)
+        elif self.attack == 4:
+            S_shatter_explosion(self)
 
 
     def draw(self, screen):

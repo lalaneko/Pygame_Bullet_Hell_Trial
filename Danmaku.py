@@ -93,3 +93,12 @@ def S_slow_down_shotgun(self, freq, density, size, speed):
         print(angle)
         for i in range(density):
             boss_slow_down_bullets.append(Boss_Slow_Down_Bullet(self.x + self.width / 2, self.y + self.height / 2, speed * random.uniform(0.8, 1.2), WHITE, size * random.uniform(0.8,1.2), angle + random.uniform(-0.1,0.1), -0.033))
+
+def S_shatter_explosion(self):
+    self.S_temp_count_frequency_modifier_split += 1
+    angle = atan(((config.Player_x + config.Player_width / 2) - (self.x + self.width / 2)) / (
+                (config.Player_y + config.Player_height / 2) - (self.y + self.width / 2)))
+    if self.S_temp_count_frequency_modifier_split % 25 == 0:
+        boss_shatter_explosion_bullets.append(Boss_Shatter_Explosion_Bullet(self.x + self.width / 2, self.y + self.height / 2, 6 * random.uniform(0.6, 1.2), WHITE, 7,
+                                                        angle + random.uniform(-0.3,0.3), -0.033 * random.uniform(0.75, 1.25)))
+
