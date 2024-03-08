@@ -101,4 +101,3 @@ def S_shatter_explosion(self):
     if self.S_temp_count_frequency_modifier_split % 25 == 0:
         boss_shatter_explosion_bullets.append(Boss_Shatter_Explosion_Bullet(self.x + self.width / 2, self.y + self.height / 2, 6 * random.uniform(0.6, 1.2), WHITE, 7,
                                                         angle + random.uniform(-0.3,0.3), -0.033 * random.uniform(0.75, 1.25)))
-

@@ -74,13 +74,13 @@ class Player:
         # print(Player_x, Player_y)
 
     def draw(self, screen):
-        pygame.draw.rect(screen, BOSS_COLOR, (self.x, self.y, self.width, self.height))
+        pygame.draw.rect(screen, PLAYER_COLOR, (self.x, self.y, self.width, self.height))
         pygame.draw.rect(screen, GREEN, (self.x, self.y - 10, (self.width / self.HEALTH) * self.health, 5))
 
     def shoot(self):
         current_time = pygame.time.get_ticks()
         if current_time - self.last_shot > self.shoot_delay:
-            bullet = Bullet(self.x + self.width // 2, self.y - 10, -10, RED, 5, 0)
+            bullet = Bullet(self.x + self.width // 2, self.y - 10, -10, PLAYER_COLOR, 5, 0)
             bullets.append(bullet)
             self.last_shot = current_time
 

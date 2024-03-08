@@ -10,6 +10,7 @@ GREEN = (0, 255, 0)
 BLUE = (0, 0, 255)
 ENEMY_COLOR = (128, 64, 200)
 BOSS_COLOR = (176, 120, 50)
+PLAYER_COLOR = (253,219,109)
 
 # 存储子弹的列表
 bullets = []
