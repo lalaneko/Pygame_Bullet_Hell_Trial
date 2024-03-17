@@ -77,11 +77,16 @@ class Player:
         pygame.draw.rect(screen, PLAYER_COLOR, (self.x, self.y, self.width, self.height))
         pygame.draw.rect(screen, GREEN, (self.x, self.y - 10, (self.width / self.HEALTH) * self.health, 5))
 
-    def shoot(self):
+    def shoot(self, target):
         current_time = pygame.time.get_ticks()
         if current_time - self.last_shot > self.shoot_delay:
-            bullet = Bullet(self.x + self.width // 2, self.y - 10, -10, PLAYER_COLOR, 5, 0)
+            bullet = Bullet(self.x+self.width//2, self.y-10, -10, PLAYER_COLOR, 0, [6.5, 4.5])
             bullets.append(bullet)
+            bullet = Tracking_Bullet(self.x+self.width//2, self.y-10, -10, BLUE, -0.1, [3.5], 0.005, target)
+            bullets.append(bullet)
+            bullet = Tracking_Bullet(self.x+self.width//2, self.y-10, -10, BLUE, 0.1, [3.5], 0.005, target)
+            bullets.append(bullet)
+
             self.last_shot = current_time
 
     def reset(self):
@@ -117,6 +122,9 @@ class Boss:
         self.S_temp_count_frequency_modifier_split = 0
         # For S_slow_down_shot
         self.S_temp_count_frequency_modifier_slow_down = 0
+
+        # 好笑的
+        self.radius = min([self.width, self.height]) / 2
 
 
     def update(self):
@@ -156,8 +164,8 @@ class Boss:
         self.speed = random.choice([-1, 1])
         self.health = 200
 
-    def shoot(self, speed=5, color=WHITE, size=5, angle=0):
-        boss_bullet = Boss_Bullet(self.x + self.width / 2, self.y + self.height / 2, speed, color, size, angle)
+    def shoot(self, speed=5, color=WHITE, size=[5], angle=0):
+        boss_bullet = Boss_Bullet(self.x+self.width/2, self.y+self.height/2, speed, color, angle, size)
         boss_bullets.append(boss_bullet)
         # boss_8_split_bullets.append(Boss_8_Split_Bullet(self.x + self.width / 2, self.y + self.height / 2, speed, color, size, angle))  # 整活用
 
