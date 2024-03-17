@@ -64,7 +64,7 @@ while not game_over:
                 player.shooting = False
 
     if player.shooting:
-        player.shoot()
+        player.shoot(boss)
 
     if not game_over:
         player.update()
