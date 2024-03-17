@@ -6,6 +6,7 @@ import time
 import random
 import config
 from Bullet_Collection import *
+from Bullet_Collection import Boss_Shatter_Explosion_Bullet
 # import Boss_Fight_Challenge
 
 
@@ -79,7 +80,7 @@ def S_spray_2(self):
 def S_split(self):
     self.S_temp_count_frequency_modifier_split += 1
     if self.S_temp_count_frequency_modifier_split % 15 == 0:
-        boss_8_split_bullets.append(Boss_8_Split_Bullet(self.x + self.width / 2, self.y + self.height / 2, 5, WHITE, 7, random.uniform(0, 2*pi)))
+        boss_8_split_bullets.append(Boss_8_Split_Bullet(self.x + self.width / 2, self.y + self.height / 2, 5, WHITE, random.uniform(0, 2*pi), [7]))
 
 
 def S_slow_down_shotgun(self, freq, density, size, speed):
@@ -92,12 +93,12 @@ def S_slow_down_shotgun(self, freq, density, size, speed):
     if self.S_temp_count_frequency_modifier_slow_down % freq == 0:
         print(angle)
         for i in range(density):
-            boss_slow_down_bullets.append(Boss_Slow_Down_Bullet(self.x + self.width / 2, self.y + self.height / 2, speed * random.uniform(0.8, 1.2), WHITE, size * random.uniform(0.8,1.2), angle + random.uniform(-0.1,0.1), -0.033))
+            boss_slow_down_bullets.append(Boss_Slow_Down_Bullet(self.x + self.width / 2, self.y + self.height / 2, speed * random.uniform(0.8, 1.2), WHITE, angle + random.uniform(-0.1,0.1), [size * random.uniform(0.8,1.2)], -0.033))
 
 def S_shatter_explosion(self):
     self.S_temp_count_frequency_modifier_split += 1
     angle = atan(((config.Player_x + config.Player_width / 2) - (self.x + self.width / 2)) / (
                 (config.Player_y + config.Player_height / 2) - (self.y + self.width / 2)))
     if self.S_temp_count_frequency_modifier_split % 25 == 0:
-        boss_shatter_explosion_bullets.append(Boss_Shatter_Explosion_Bullet(self.x + self.width / 2, self.y + self.height / 2, 6 * random.uniform(0.6, 1.2), WHITE, 7,
-                                                        angle + random.uniform(-0.3,0.3), -0.033 * random.uniform(0.75, 1.25)))
+        boss_shatter_explosion_bullets.append(Boss_Shatter_Explosion_Bullet(self.x+self.width/2, self.y+self.height/2, 6*random.uniform(0.6, 1.2), WHITE,
+                                                        angle+random.uniform(-0.3,0.3), [7], -0.033 * random.uniform(0.75, 1.25)))
